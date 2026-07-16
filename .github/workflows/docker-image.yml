@@ -26,3 +26,12 @@ jobs:
         echo "Inciando login docker"
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         echo "Finalizando login docker"
+
+    - name: Build docker image
+      run: |
+        docker build -t kaster99080/graphql-actions:0.0.2 .
+
+    - name: Build docker image
+      run: |
+        docker push kaster99080/graphql-actions:0.0.2
+        
