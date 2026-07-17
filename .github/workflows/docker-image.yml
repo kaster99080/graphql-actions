@@ -30,8 +30,10 @@ jobs:
     - name: Build docker image
       run: |
         docker build -t kaster99080/graphql-actions:0.0.2 .
+        docker build -t kaster99080/graphql-actions:latest .
 
     - name: Push docker image
       run: |
         docker push kaster99080/graphql-actions:0.0.2
+        docker push kaster99080/graphql-actions:latest
         
