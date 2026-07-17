@@ -18,6 +18,14 @@ jobs:
       with:
         fetch-dept: 0
 
+    - name: Git Semantic Version
+      uses: PaulHatch/semantic-version@v4.0.3
+      with:
+        major_pattern: "major:"
+        minor_pattern: "feat:"
+        format: "${major}.${minor}.${patch}-prerelease${increment}"
+      id: version
+
     - name: Docker login
       env: 
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
@@ -28,7 +36,11 @@ jobs:
       run: |
         echo "Inciando login docker"
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        echo "***VERSION_TYPE: -$VERSION_TYPE!!!!!"
+        echo "***INCREMENT:    -$INCREMENT!!!!!"
+        echo "***NEW_VERSION:  -$NEW_VERSION!!!!!""
         echo "Finalizando login docker"
+        
 
     # - name: Build docker image
       # run: |
