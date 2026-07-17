@@ -31,11 +31,15 @@ jobs:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         NEW_VERSION: ${{ steps.version.outputs.format }}
+        INCREMENT: ${{ steps.version.outputs.increment }}
+        VERSION_TYPE: ${{ steps.version.outputs.version_type }}
       run: |
-        #echo "Inciando login docker"
+        echo "Inciando login docker"
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-        #echo "Finalizando login docker"
+        echo "Finalizando login docker"
+        echo "INCREMENT: $INCREMENT!!!!!!!!!!!!!!!!!!!!!!!!!"
         echo "new version: $NEW_VERSION!!!!!!!!!!!!!!!!!!!!!!!!!"
+        echo "new version: $VERSION_TYPE!!!!!!!!!!!!!!!!!!!!!!!!!"
 
     # - name: Build docker image
       # run: |
