@@ -42,13 +42,17 @@ jobs:
         echo "Finalizando login docker"
         
 
-    # - name: Build docker image
-      # run: |
-        # docker build -t kaster99080/graphql-actions:0.0.2 .
-        # docker build -t kaster99080/graphql-actions:latest .
+    - name: Build docker image
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker build -t kaster99080/graphql-actions:$NEW_VERSION .
+        docker build -t kaster99080/graphql-actions:latest .
 
-    # - name: Push docker image
-      # run: |
-        # docker push kaster99080/graphql-actions:0.0.2
-        # docker push kaster99080/graphql-actions:latest
+    - name: Push docker image
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker push kaster99080/graphql-actions:$NEW_VERSION
+        docker push kaster99080/graphql-actions:latest
         
